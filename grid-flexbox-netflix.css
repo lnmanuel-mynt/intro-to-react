@@ -50,9 +50,6 @@
   padding: 10px;
 }
 
-.content {
-}
-
 .title {
   height: 50px;
   width: 400px;
@@ -64,7 +61,7 @@
   flex-wrap: wrap;
   width: 400px;
   justify-content: center;
-  aliign-item: center;
+  align-items: center;
 }
 
 .button {
@@ -74,7 +71,6 @@
 
 .list {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   align-content: center;
 }
