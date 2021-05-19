@@ -1,0 +1,81 @@
+<html>
+  <head>
+
+    <style>
+      .close {
+        margin-left: 20px;
+      }
+    </style>
+
+  </head>
+
+  <body>
+    <h1 class='header-main' id='header-main'>Nice</h1>
+    <p id='text-content'>Hello</p>
+
+    <input type='text' id='input' />
+
+    <button class='btn' id='submit-btn' onclick='changeHeader();'>
+      Submit
+    </button>
+
+    <div>
+      <ul id='list'></ul>
+      <input type='text' id='list-input' />
+      <button class='btn' id='list-btn' onclick='addToList();'>
+        Add To List
+      </button>
+    </div>
+
+    <script>
+      var taskCounter = 1
+
+      function changeHeader() {
+        document.getElementById('header-main').textContent = document.getElementById('input').value
+      }
+
+      const headerMain = document.getElementsByClassName('header-main')
+      console.log(headerMain[0].textContent)
+
+      const pTag = document.getElementById('text-content')
+      console.log(pTag.innerHTML)
+
+      function addToList() {
+        const inputValue = document.getElementById('list-input').value
+        if (inputValue.length < 1) 
+          return
+
+        const list = document.getElementById('list')
+        const listItem = document.createElement('LI')
+        const listItemText = document.createTextNode(inputValue)
+        listItem.appendChild(listItemText)
+
+        const span = document.createElement("SPAN")
+        const spanText = document.createTextNode("\u00D7")
+        
+        span.className = 'close'
+        span.id = 'task-' + taskCounter
+        span.addEventListener('click', function() {removeFromList(span.id)})
+        span.appendChild(spanText)
+        listItem.appendChild(span)
+
+        list.appendChild(listItem)
+        document.getElementById('list-input').value = ""
+        taskCounter++
+      }
+
+      function removeFromList(id) {
+        const list = document.getElementById('list')
+        const closeSpans = document.getElementsByClassName("close")
+        for (var index = 0; index < closeSpans.length; index++) {
+          if (closeSpans[index].id == id) {
+            list.removeChild(list.childNodes[index])
+            return
+          }
+        }
+      }
+      
+    </script>
+
+  </body>
+</html>
